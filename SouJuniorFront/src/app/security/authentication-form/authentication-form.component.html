@@ -1,0 +1,33 @@
+<!-- Default form login -->
+<div id= "main">
+  <div id="formheader">
+    <p class="h4 mb-4">Entre na SouJunior!</p>
+  </div>
+  <form (submit)="onSubmit.emit(form.value)" [formGroup]="form" class="text-center border border-light p-5">
+
+    <!-- Email -->
+    <label for="email"> Nome do Proprietáriogsdyfgasohdfgsaidfgsapjdfsadopfjasdlpkfjsadjfasdf</label>
+    <input type="email" formControlName="email" id="email" class="form-control mb-4" placeholder="Digite o E-mail">
+
+    <!-- Password -->
+    <label for="senha"> Nome do Proprietário</label>
+    <input type="password" formControlName="senha" id="senha" class="form-control mb-4" placeholder="Digite a Senha">
+
+    <div class="d-flex justify-content-around">
+      <div>
+        <!-- Forgot password -->
+        <a href="">Esqueceu a senha?</a>
+      </div>
+    </div>
+
+    <!-- Sign in button -->
+    <button mdbBtn color="info" block="true" class="my-4" type="submit">Entrar</button>
+
+    <!-- Register -->
+    <p>Não está cadastrado?
+      <a href="">Cadastre-se</a>
+    </p>
+
+  </form>
+</div>
+<!-- Default form login -->

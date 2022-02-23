@@ -1,0 +1,21 @@
+<mat-form-field appearance="none" class="form-control" >
+  <label for="auto"> Ramo Atuação</label>
+  <input type="text"
+        disableUnderline={true}
+         matInput
+         [formControl]="myControl"
+         [matAutocomplete]="auto"
+         id="auto"
+         >
+        <mat-autocomplete #auto="matAutocomplete"
+        [displayWith]="displayFn"
+        (optionSelected)="optionSelected($event)">
+
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option.descricao}}
+          </mat-option>
+
+        </mat-autocomplete>
+
+</mat-form-field>
+

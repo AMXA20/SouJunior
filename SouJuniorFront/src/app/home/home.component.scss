@@ -1,0 +1,77 @@
+.principal{
+  margin-top: 20px;
+  background-color: white;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.header{
+  font-family: 'Open Sans', arial, helvetica, sans-serif;
+  position: relative;
+  right: 12.7%;
+  width: 100vw;
+  background-image: url("/assets/background-destaque-home.jpg");
+  background-size: auto;
+  background-position: top right;
+  top: -20px;
+  background-repeat: no-repeat;
+  color: white;
+  h1{
+    padding-top: 4em;
+    font-size: 50px;
+    text-align: center;
+
+  }
+  #p-header{
+    text-align: center;
+    margin-top: 4em;
+    font-size: 30px;
+    margin-bottom: 2em;
+  }
+}
+p{
+  color: white;
+}
+
+img{
+  height: 250px;
+}
+.card2{
+  margin-bottom: 2px;
+}
+.carousel{
+  margin-top: 10px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.content{
+  margin-top: 100px;
+  background: #f8f9f9;
+  padding: 20px 0 80px;
+  border-top: 1px solid #e3e3e3;
+}
+
+.content h2{
+  color: #737c85;
+  font-size: 21px;
+  padding-top: 40px;
+  font-weight: 400;
+}
+.content p{
+  color: #929da5;
+  font-size: 14px;
+  word-spacing: 3px;
+}
+
+.content .container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+}
+
+@media (min-width: 700px){
+  .header{
+    background-size: 100vw;
+  }
+}

@@ -1,0 +1,77 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color fixed-top" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a routerLink=""  class="navbar-brand" href="#">SouJunior</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Menu EmpresaJr -->
+    <ul class="navbar-nav ml-auto">
+      <app-authorize-view [role] = "'empresajr'">
+        <ng-container authorized>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="listaProposta"><mdb-icon fas icon="address-book"></mdb-icon> Propostas Recebidas<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item avatar dropdown" dropdown>
+              <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                Olá!,  {{securityService.getFieldFromJWT('email')}}</a>
+              <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="editEmpresaJr/#">Editar Perfil</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="#" (click) = "logout()">Sair</a>
+              </div>
+            </li>
+          </ul>
+        </ng-container>
+      </app-authorize-view>
+
+
+      <!-- Menu MicroEmpresa -->
+      <app-authorize-view [role] = "'empreendedor'">
+        <ng-container authorized>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="buscaEmpresa"><mdb-icon fas icon="address-book"></mdb-icon> Buscar Empresas<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="listaProposta"><mdb-icon fas icon="address-book"></mdb-icon> Propostas <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item avatar dropdown" dropdown>
+              <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                Olá!,  {{securityService.getFieldFromJWT('email')}}</a>
+              <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="editMicroEmpresa/#">Editar Perfil</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="#" (click)="securityService.logout()">Sair</a>
+              </div>
+            </li>
+          </ul>
+
+        </ng-container>
+      </app-authorize-view>
+
+    <app-authorize-view>
+      <ng-container notAuthorized>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a class="nav-link waves-light" mdbWavesEffect routerLink="login" ><mdb-icon fas icon="user-alt"></mdb-icon> Entrar<span class="sr-only">(current)</span></a>
+          </li>
+          <!-- Dropdown -->
+          <li class="nav-item dropdown" dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+              <mdb-icon fas icon="user"></mdb-icon> Cadastrar<span class="caret"></span></a>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+              <a class="dropdown-item waves-light" mdbWavesEffect routerLink="createEmpresaJr"> Empresa JR</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect routerLink="createMicroEmpresa"> Micro-Empresa</a>
+              <!-- <a class="dropdown-item waves-light" mdbWavesEffect routerLink="createAluno"> Estudante</a> -->
+            </div>
+          </li>
+        </ul>
+      </ng-container>
+    </app-authorize-view>
+  </ul>
+    <!-- Links -->
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>

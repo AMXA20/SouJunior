@@ -1,0 +1,19 @@
+<div class="container">
+    <br>
+    <button type="button" mat-raised-button (click)="fileInput.click()">Imagem de Perfil</button>
+    <input type="file" hidden #fileInput accept="image/png, image/jpeg" (change)="fileChangeEvent($event)" />
+    <br>
+
+
+    <div>
+        <div *ngIf="cardImageBase64">
+            <img [src]="cardImageBase64"/>
+        </div>
+        <div *ngIf="urlCurrentImage">
+          <div *ngIf="urlCurrentImage"!='data:image/png;base64,null'>
+            <img [src]="urlCurrentImage"/>
+          </div>
+        </div>
+    </div>
+    <br>
+</div>

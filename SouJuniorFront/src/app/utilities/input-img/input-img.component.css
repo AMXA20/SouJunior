@@ -1,0 +1,12 @@
+.container{
+  text-align: center;
+}
+button {
+    margin-bottom: 1rem;
+    white-space: nowrap;
+}
+img{
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+}

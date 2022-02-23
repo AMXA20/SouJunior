@@ -1,0 +1,32 @@
+<div class = 'principal'>
+  <div id="header">
+    <p class="h2 mb-4" id="title">Lista de Empresas Juniores</p>
+  </div>
+  <form [formGroup]="form">
+    <div class="form-row mb-4">
+        <div class="col">
+          <!-- Nome da Empresa -->
+          <label for="nomeFantasia"> Nome da Empresa</label>
+          <input type="text"  formControlName="nomeFantasia" id="nomeFantasia" class="form-control" placeholder="Digite o nome da Empresa">
+        </div>
+
+        <div class="col">
+          <!-- Nome da Empresa -->
+          <label for="ramoAtuacao"> Ramo de Atuação</label>
+          <input type="text"  formControlName="ramoAtuacao" id="ramoAtuacao" class="form-control" placeholder="Entre com o Ramo de Atuação">
+        </div>
+      </div>
+  </form>
+
+  <app-empresa-jr-list [empresasJr]="empresasJr.dados"></app-empresa-jr-list>
+
+
+
+  <mat-paginator
+      [length]="20"
+      [pageSize]="recordsPerPage"
+      [pageSizeOptions]="[1, 5, 20, 50]"
+      (page)="paginatorUpdate($event)"
+  >
+  </mat-paginator>
+</div>

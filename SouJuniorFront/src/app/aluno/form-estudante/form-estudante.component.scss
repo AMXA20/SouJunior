@@ -1,0 +1,37 @@
+.container{
+  width: 90%;
+  padding-bottom: 20px;
+  #title{
+    text-align: center;
+    padding-top: 3rem;
+  }
+}
+.mb-4{
+  padding-top: 1rem;
+}
+form{
+  padding-top: 1rem;
+  width: auto;
+}
+
+button{
+  border-radius: 10px;
+}
+
+textarea {
+  height: 150px;
+}
+
+label{
+  font-size: 14px;
+  position:absolute;
+  top: -11px;
+  left:20px;
+  background-color:white;
+
+}
+
+.Stepper{
+  margin-bottom: 50px;
+  padding-bottom: 12px;
+}

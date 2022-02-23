@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+body {
+  background-color: rgb(241, 239, 239);
+}
+.card-body{
+  background-image: url('/assets/imagens/Background/v960-ning-30.jpg');
+  background-size: cover;
+}
+.text-poppy-red {
+  color: #ef5350 !important;
+}
+.btn-poppy-red {
+  background-color: #ef5350 !important;
+}
+.bg-poppy-red {
+  background-color: #ef5350 !important;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

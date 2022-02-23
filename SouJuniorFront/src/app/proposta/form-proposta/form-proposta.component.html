@@ -1,0 +1,51 @@
+<div class="principal">
+  <section class="content">
+    <div class="container">
+
+      <article>
+        <img [src]="empresajr.imagemPerfil" alt="">
+        <h2>{{empresajr.nomeFantasia}}</h2>
+        <p>{{empresajr.descricao}}</p>
+        <h3><mdb-icon fas icon="address-book"></mdb-icon>
+          {{empresajr.endereco.logradouro}},
+          {{empresajr.endereco.numero}},
+          {{empresajr.endereco.complemento}},
+          {{empresajr.endereco.bairro}},
+          {{empresajr.endereco.cidade}},
+          {{empresajr.endereco.estado}},
+          {{empresajr.endereco.cep}}</h3>
+      </article>
+
+      <article class="form">
+        <form (submit)="saveChanges()" [formGroup]="form" class="text-center">
+          <div class="form-row mb-4">
+
+            <div class="col">
+              <!-- Título -->
+              <label for="titulo"> Título da Proposta</label>
+              <input type="text"  formControlName="titulo" id="titulo" class="form-control" placeholder="Digite o título">
+            </div>
+
+          </div>
+
+          <textarea type="text"  formControlName="descricao" id="descricao" class="form-control" placeholder="Digite o Detalhe da Proposta"></textarea>
+
+          <div class="form-row mb-4">
+            <div class="col">
+              <button mdbBtn color="danger" block="true" class="my-4" routerLink= "/buscaEmpresa">Cancelar</button>
+            </div>
+            <div class="col">
+              <button mdbBtn color="success" block="true" class="my-4" type="submit"
+              [swal]="{
+                title:'Confirmação',
+                text: 'Deseja Enviar a Proposta?',
+                showCancelButton:true
+              }" (confirm)="saveChanges()">Enviar Proposta</button>
+            </div>
+          </div>
+        </form>
+
+      </article>
+      </div>
+    </section>
+</div>

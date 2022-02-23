@@ -1,0 +1,18 @@
+mat-toolbar{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+mat-icon{
+  color: rgb(190, 32, 143);
+}
+
+img{
+  background-color: red;
+  width: 30px;
+  margin-bottom: 2px;
+}
+
+

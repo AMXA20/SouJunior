@@ -1,0 +1,169 @@
+
+<div class="container">
+
+    <form (submit)="saveChanges()" [formGroup]="form" class="text-center">
+      <mat-stepper orientation="vertical" [linear]="false" #stepper>
+      <mat-step [stepControl]="form" label="Dados do Usuario" class="Stepper">
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- Nome do Proprietário -->
+            <label for="nome"> Nome do Proprietário</label>
+            <input type="text" formControlName="nome" id="nome" class="form-control" placeholder="Digite um nome">
+          </div>
+        </div>
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- Telefone-->
+            <label for="telefone"> Telefone</label>
+            <input [textMask]="{mask: mascaraTelefone}" type="text" formControlName="telefone" id="telefone" class="form-control" placeholder="Telefone">
+          </div>
+          <div class="col">
+            <!-- Email-->
+            <label for="email"> Email</label>
+            <input type="email" formControlName="email" id="email" class="form-control" placeholder="Email">
+          </div>
+        </div>
+
+
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- Senha -->
+            <label for="senha"> Senha</label>
+            <input type="password" formControlName="senha" id="senha" class="form-control" placeholder="Senha">
+          </div>
+          <div class="col">
+            <!-- Repetir Senha-->
+            <label for="senharepetida"> Repetir Senha</label>
+            <input type="password" id="senharepetida" class="form-control" placeholder="Repetir Senha" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+          </div>
+        </div>
+
+        <app-input-img
+          [urlCurrentImage]="usuario?.imagemPerfil"
+          (onImageSelected)="onImageSelected($event)">Selecione uma Imagem</app-input-img>
+
+        <div>
+          <button matStepperNext mdbBtn color="info" block="true" class="my-4" type="button">Próximo</button>
+        </div>
+      </mat-step>
+
+      <mat-step formGroupName="empresaJr" [stepControl]="form" label="Dados da Empresa" class="Stepper">
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- Nome da Empresa -->
+              <label for="nomeFantasia"> Nome Fantasia</label>
+              <input type="text" formControlName="nomeFantasia"  id="nomeFantasia" class="form-control" placeholder="Digite um nome">
+          </div>
+          <div class="col">
+            <!-- CNPJ-->
+            <label for="cnpj"> Cnpj</label>
+            <input [textMask]="{mask: mascaraCnpj}" type="text" formControlName="cnpj" id="cnpj" class="form-control" placeholder="Cnpj">
+          </div>
+        </div>
+
+        <div class="form-row mb-4">
+
+          <div class="col">
+            <!-- Razão Social -->
+            <label for="razaoSocial"> Razão Social</label>
+            <input type="text"  formControlName="razaoSocial" id="razaoSocial" class="form-control" placeholder="Razão Social">
+          </div>
+
+        </div>
+
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- Data de Criação -->
+            <label for="dataCriacao"> Data de Criação</label>
+            <input type="date"  formControlName="dataCriacao" id="dataCriacao" class="form-control" placeholder="Data de Criação">
+          </div>
+
+
+          <div class="col">
+               <app-autocomplete-ramo-atuacao></app-autocomplete-ramo-atuacao>
+          </div>
+        </div>
+
+         <!-- Descrição -->
+
+        <textarea type="text"  formControlName="descricao" id="descricao" class="form-control" placeholder="Sobre a Empresa"></textarea>
+
+
+        <div class="form-row mb-4">
+          <div class="col">
+            <button matStepperPrevious mdbBtn color="light" block="true" class="my-4" type="button">Voltar</button>
+          </div>
+          <div class="col">
+            <button matStepperNext mdbBtn color="info" block="true" class="my-4" type="button">Próximo</button>
+          </div>
+        </div>
+      </mat-step>
+
+      <mat-step formGroupName="endereco" [stepControl]="form" label="Endereço">
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- Cep -->
+              <label for="cep"> Cep </label>
+              <input [textMask]="{mask: mascaraCep}" type="text" formControlName="cep"  id="cep" class="form-control" placeholder="Digite o Cep">
+          </div>
+
+          <div class="col" id="logra">
+            <!-- Logradouro-->
+            <label for="logradouro"> Logradouro</label>
+            <input type="text" formControlName="logradouro" id="logradouro" class="form-control" placeholder="Digite o Logradouro">
+          </div>
+
+        </div>
+
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- Estado-->
+            <label for="estado"> Estado</label>
+            <input type="text" formControlName="estado" id="estado" class="form-control" placeholder="Digite o Estado">
+          </div>
+          <div class="col">
+            <!-- Cidade-->
+            <label for="estado"> Cidade</label>
+            <input type="text" formControlName="cidade" id="cidade" class="form-control" placeholder="Digite o Cidade">
+          </div>
+        </div>
+
+        <div class="form-row mb-4">
+          <div class="col">
+            <!-- Bairro -->
+              <label for="bairro"> Bairro </label>
+              <input type="text" formControlName="bairro"  id="bairro" class="form-control" placeholder="Digite o Bairro">
+          </div>
+          <div class="col">
+            <!-- Número-->
+            <label for="numero"> Número</label>
+            <input type="text" formControlName="numero" id="numero" class="form-control" placeholder="Digite o Número">
+          </div>
+          <div class="col">
+            <!-- Complemento-->
+            <label for="complemento"> Complemento</label>
+            <input type="text" formControlName="complemento" id="complemento" class="form-control" placeholder="Digite o Complemento">
+          </div>
+        </div>
+
+
+        <div class="form-row mb-4">
+          <div class="col">
+            <button matStepperPrevious mdbBtn color="light" block="true" class="my-4" type="button">Voltar</button>
+          </div>
+          <div class="col" *ngIf="!usuario">
+            <button mdbBtn color="success" block="true" class="my-4" type="submit">Cadastrar</button>
+          </div>
+          <div class="col" *ngIf="usuario">
+            <button mdbBtn color="success" block="true" class="my-4" type="submit">Salvar</button>
+          </div>
+        </div>
+      </mat-step>
+
+
+
+    </mat-stepper>
+  </form>
+
+
+</div>
