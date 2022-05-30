@@ -1,3 +1,4 @@
+import { empresajrProposta } from './../../model/empresa-jr.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpresajrService } from 'src/app/empresajr/empresajr.service';
@@ -20,7 +21,7 @@ export class CreatePropostaComponent implements OnInit {
     private propostaService : PropostaService,
     private activatedRoute : ActivatedRoute, private router: Router) { }
 
-  model: empresajrDTO;
+  model: empresajrProposta;
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -31,6 +32,7 @@ export class CreatePropostaComponent implements OnInit {
   }
 
   saveChanges(propostaCreationDTO: propostaCreationDTO){
+    console.log(propostaCreationDTO);
     Swal.fire({
       icon: 'success',
       title: 'Proposta Criada!',
@@ -40,6 +42,6 @@ export class CreatePropostaComponent implements OnInit {
     this.propostaService.create(propostaCreationDTO).subscribe(() =>{
         this.router.navigate(['/listaProposta']);
     }, error => this.errors = parseWebAPIErrors(error))
-    console.log(propostaCreationDTO)
+
   }
 }

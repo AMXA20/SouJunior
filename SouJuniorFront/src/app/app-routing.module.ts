@@ -1,3 +1,6 @@
+import { EditCandidatoComponent } from './candidato/edit-candidato/edit-candidato.component';
+import { CandidatoFilterComponent } from './candidato/candidato-filter/candidato-filter.component';
+import { CreateCandidatoComponent } from './candidato/create-candidato/create-candidato.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateEmpresaJrComponent } from './empresajr/create-empresa-jr/create-empresa-jr.component';
@@ -29,6 +32,9 @@ const routes: Routes = [
   {path: 'mpe/detalheProposta/:id', component: CreatePropostaComponent},
   {path: 'listaProposta', component: PropostaFilterComponent},
   {path: 'listaProposta/detalhe/:id', component: EditPropostaComponent},
+  {path: 'estudante/detalheCandidato/:id', component: CreateCandidatoComponent},
+  {path: 'listaCandidato', component: CandidatoFilterComponent},
+  {path: 'listaCandidato/detalhe/:id', component: EditCandidatoComponent},
   {path: '**', redirectTo: ''}
 
 ];

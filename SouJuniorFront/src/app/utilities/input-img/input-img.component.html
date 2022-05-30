@@ -7,11 +7,11 @@
 
     <div>
         <div *ngIf="cardImageBase64">
-            <img [src]="cardImageBase64"/>
+            <img [src]="cardImageBase64" class="img-fluid z-depth-2 rounded"/>
         </div>
         <div *ngIf="urlCurrentImage">
-          <div *ngIf="urlCurrentImage"!='data:image/png;base64,null'>
-            <img [src]="urlCurrentImage"/>
+          <div *ngIf="urlCurrentImage !='data:image/png;base64,null'">
+            <img [src]="urlCurrentImage" class="img-fluid z-depth-2 rounded"/>
           </div>
         </div>
     </div>

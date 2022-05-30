@@ -35,7 +35,7 @@ namespace SouJunior
         {
             var sqlConnectionString = Configuration.GetSection("SqlConnectionString").Get<string>() ?? "";
             services.AddDbContext<MyContext>(
-                options => options.UseSqlServer("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=SouJunior;Data Source=ALEXANDRE")
+                options => options.UseSqlServer("Integrated Security = SSPI; Persist Security Info = False; Initial Catalog = SouJunior; Data Source = DESKTOP-7V9PENM\\SQLEXPRESS")
             );
 
             // Add CORS policy
@@ -126,16 +126,20 @@ namespace SouJunior
             //Repositórios
             services.AddScoped<IBaseRepository<UsuarioEntity>, BaseRepository<UsuarioEntity>>();
             services.AddScoped<IBaseRepository<PropostaEntity>, BaseRepository<PropostaEntity>>();
+            services.AddScoped<IBaseRepository<PostagemEntity>, BaseRepository<PostagemEntity>>();
             services.AddScoped<IRamoAtuacaoRepository, RamoAtuacaoRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IEmpresaJrRepository, EmpresaJrRepository>();
             services.AddScoped<IPropostaRepository, PropostaRepository>();
             services.AddScoped<IEmpreendedorRepository, EmpreendedorRepository>();
+            services.AddScoped<IEstudanteRepository, EstudanteRepository>();
+            services.AddScoped<IPostagemRepository, PostagemRepository>();
 
             // Services
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IBaseService<UsuarioEntity>, BaseService<UsuarioEntity>>();
             services.AddScoped<IBaseService<PropostaEntity>, BaseService<PropostaEntity>>();
+            services.AddScoped<IBaseService<PostagemEntity>, BaseService<PostagemEntity>>();
 
         }
 

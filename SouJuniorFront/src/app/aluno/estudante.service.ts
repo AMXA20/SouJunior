@@ -9,7 +9,7 @@ import { usuarioCreatioDTO } from '../model/usuario.model';
 export class EstudanteService {
 
   constructor(private http: HttpClient) { }
-  private apiURL = environment.apiURL + '/Usuario/Create';
+  private apiURL = environment.apiURL + 'Usuario/Create';
 
   create(usuarioCreatioDTO: usuarioCreatioDTO){
     return this.http.post(this.apiURL, usuarioCreatioDTO);

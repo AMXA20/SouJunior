@@ -1,0 +1,5 @@
+<div id="header">
+  <p class="h2 mb-4" id="title">Detalhes da Empresa</p>
+</div>
+<app-form-candidato *ngIf="model" [empresajr]="model"  (onSaveChanges)="saveChanges($event)"></app-form-candidato>
+

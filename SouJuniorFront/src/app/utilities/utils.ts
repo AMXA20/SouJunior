@@ -11,8 +11,12 @@ export function parseWebAPIErrors(response: any): string[] {
   const result: string[] = [];
 
   if (response.error){
-      if (typeof response.error === 'string'){
-          result.push(response.error);
+
+    console.log(typeof response.error);
+
+      if (typeof response.error === 'object'){
+          result.push(response.error.message);
+          console.log(1);
       } else if (Array.isArray(response.error)) {
           response.error.forEach(value => result.push(value.description));
       } else{

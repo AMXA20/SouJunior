@@ -1,4 +1,5 @@
-<div class="principal">
+
+<div class="principal  example z-depth-5">
   <div id="hero">
     <app-authorize-view [role] = "'empreendedor'">
 
@@ -15,12 +16,13 @@
         </div>
 
         <section class="content">
+          <img [src]="proposta.empresaJr.imagemPerfil" alt=""  class="img-fluid z-depth-2 rounded">
           <div class="container">
             <article>
-              <h1>Empresa</h1>
-              <img [src]="proposta.empresaJr.imagemPerfil" alt="">
-              <h2>{{proposta.empresaJr.nomeFantasia}}</h2>
-              <p>{{proposta.empresaJr.descricao}}</p>
+              <!-- <h1>Empresa</h1>
+ -->
+              <h2><strong>{{proposta.empresaJr.nomeFantasia}}</strong></h2>
+              <p class="descricao"><strong>Sobre: </strong>{{proposta.empresaJr.descricao}}</p>
                 <h3><mdb-icon fas icon="map-marked"></mdb-icon> {{proposta.empresaJr.endereco.logradouro}},
                   {{proposta.empresaJr.endereco.numero}},
                   {{proposta.empresaJr.endereco.complemento}},
@@ -34,10 +36,11 @@
                   </div>
             </article>
             <article>
-              <h1 class="h2 mb-4">Proposta</h1>
-              <h2>{{proposta.titulo}}</h2>
-              <p>{{proposta.descricao}}</p>
-              <p>{{proposta.dataCriacao.substring(0,10).replace("-","/").replace("-","/")}}</p>
+              <!-- <h1 class="h2 mb-4">Proposta</h1> -->
+              <h2><strong>{{proposta.titulo}}</strong></h2>
+              <p class="descricao"><strong>Descrição da Proposta: </strong>{{proposta.descricao}}</p>
+              <p><strong>Data de Envio: </strong>{{proposta.dataCriacao.substring(0,10).replace("-","/").replace("-","/")}}</p>
+              <!-- <p>{{proposta.dataCriacao | date: "short"}}</p> -->
             </article>
 
           </div>
@@ -67,30 +70,43 @@
 
     <app-authorize-view [role] = "'empresajr'">
       <ng-container authorized>
+        <div *ngIf="proposta.isAceita === null" >
+          <p id="pendente">Pendente</p>
+        </div>
+        <div *ngIf="proposta.isAceita === true">
+          <p id="aprovado">Aprovada</p>
+        </div>
+        <div *ngIf="proposta.isAceita === false">
+          <p id="recusado">Recusada</p>
+        </div>
         <section class="content">
+          <img [src]="proposta.empreendedor.imagemPerfil" alt="" class="img-fluid z-depth-2 rounded">
           <div class="container">
+
             <article>
-              <h1>Empresa</h1>
-              <img [src]="proposta.empreendedor.imagemPerfil" alt="">
-              <h2>{{proposta.empreendedor.nomeFantasia}}</h2>
-              <p>{{proposta.empreendedor.descricao}}</p>
-                <h3><mdb-icon fas icon="map-marked"></mdb-icon> {{proposta.empreendedor.endereco.logradouro}},
-                  {{proposta.empreendedor.endereco.numero}},
-                  {{proposta.empreendedor.endereco.complemento}},
-                  {{proposta.empreendedor.endereco.bairro}},
-                  {{proposta.empreendedor.endereco.cidade}},
-                  {{proposta.empreendedor.endereco.estado}},
-                  {{proposta.empreendedor.endereco.cep}}</h3>
-                  <div *ngIf="proposta.isAceita === true" >
-                    <h3><mdb-icon fas icon="address-book"></mdb-icon>
-                      {{proposta.empreendedor.telefone}},  {{proposta.empreendedor.email}}</h3>
-                  </div>
+              <!-- <h1>Empresa</h1> -->
+              <div *ngIf="proposta.empreendedor.id != '00000000-0000-0000-0000-000000000000'">
+
+                <h2><strong>{{proposta.empreendedor.nomeFantasia}}</strong></h2>
+                <p class="descricao"><strong>Sobre: </strong>{{proposta.empreendedor.descricao}}</p>
+                  <h3><mdb-icon fas icon="map-marked"></mdb-icon> {{proposta.empreendedor.endereco.logradouro}},
+                    {{proposta.empreendedor.endereco.numero}},
+                    {{proposta.empreendedor.endereco.complemento}},
+                    {{proposta.empreendedor.endereco.bairro}},
+                    {{proposta.empreendedor.endereco.cidade}},
+                    {{proposta.empreendedor.endereco.estado}},
+                    {{proposta.empreendedor.endereco.cep}}</h3>
+                    <div *ngIf="proposta.isAceita === true" >
+                      <h3><mdb-icon fas icon="address-book"></mdb-icon>
+                        {{proposta.empreendedor.telefone}},  {{proposta.empreendedor.email}}</h3>
+                    </div>
+              </div>
             </article>
             <article>
-              <h1 class="h2 mb-4">Proposta</h1>
-              <h2>{{proposta.titulo}}</h2>
-              <p>{{proposta.descricao}}</p>
-              <p>{{proposta.dataCriacao.substring(0,10).replace("-","/").replace("-","/")}}</p>
+              <!-- <h1 class="h2 mb-4">Proposta</h1> -->
+              <h2><strong>{{proposta.titulo}}</strong></h2>
+              <p class="descricao"><strong>Descrição da Proposta: </strong>{{proposta.descricao}}</p>
+              <p><strong>Data de envio: </strong>{{proposta.dataCriacao | date: 'short'}}</p>
             </article>
 
           </div>
@@ -98,10 +114,10 @@
 
         <div *ngIf="proposta.isAceita == null" class="form-row mb-4">
           <div class="col">
-            <button mdbBtn color="primary" block="true" class="my-4" routerLink="/listaProposta">Voltar</button>
+            <button mdbBtn color="primary" block="true" class="my-4 img-fluid z-depth-2 rounded" routerLink="/listaProposta">Voltar</button>
           </div>
           <div class="col">
-            <button mdbBtn color="danger" block="true" class="my-4"
+            <button mdbBtn color="danger" block="true" class="my-4 img-fluid z-depth-2 rounded"
             [swal]="{
               icon: 'info',
               title:'Recusar',
@@ -111,7 +127,7 @@
             (confirm)="reprovar()" type="submit">Recusar</button>
           </div>
           <div class="col">
-            <button mdbBtn color="success" block="true" class="my-4"
+            <button mdbBtn color="success" block="true" class="my-4 img-fluid z-depth-2 rounded"
             [swal]="{
               icon: 'info',
               title:'Aceitar',
@@ -125,21 +141,53 @@
           <div class="col">
           </div>
           <div class="col">
-            <button mdbBtn color="primary" block="true" class="my-4" routerLink="/listaProposta">Voltar</button>
+            <button mdbBtn color="primary" block="true" class="my-4 img-fluid z-depth-2 rounded" routerLink="/listaProposta">Voltar</button>
           </div>
           <div class="col">
           </div>
         </div>
-          <div *ngIf="proposta.isAceita === null" >
-            <p id="pendente">Pendente</p>
-          </div>
-          <div *ngIf="proposta.isAceita === true">
-            <p id="aprovado">Aprovada</p>
-          </div>
-          <div *ngIf="proposta.isAceita === false">
-            <p id="recusado">Recusada</p>
-          </div>
+
       </ng-container>
     </app-authorize-view>
+
+  <div *ngIf="proposta.isAceita === true">
+    <article class="form">
+      <form (submit)="postar()" [formGroup]="form" class="text-center">
+        <div class="input-group mb-3" id="enviar">
+          <textarea type="text"  formControlName="mensagem" id="mensagem" class="form-control" placeholder="Comente!"></textarea>
+          <div class="input-group-prepend">
+            <button mat-fab  type="submit" id="btnEnviar" mdbWavesEffect
+              [swal]="{
+                title:'Confirmação',
+                text: 'Tem certeza da mensagem',
+                showCancelButton:true
+              }" (confirm)="postar()">
+              <mat-icon>send</mat-icon>
+            </button>
+          </div>
+        </div>
+      </form>
+      <div *ngFor="let postagem of proposta.postagens">
+        <section class="content">
+            <div *ngIf="postagem.nomeUsuario == usuarioNome" >
+              <div class="message-blue">
+                  <div class="usuario">{{postagem.nomeUsuario}}</div>
+                  <p class="message-content">{{postagem.mensagem}}</p>
+                  <div class="message-timestamp-left">{{postagem.dataHora | date: 'short'}}</div>
+              </div>
+            </div>
+            <div *ngIf="postagem.nomeUsuario != usuarioNome">
+              <div class="message-orange">
+                  <div class="usuario">{{postagem.nomeUsuario}}</div>
+                  <p class="message-content">{{postagem.mensagem}}</p>
+                  <div class="message-timestamp-right">{{postagem.dataHora | date: 'short'}}</div>
+              </div>
+            </div>
+        </section>
+      </div>
+      <br>
+
+    </article>
+  </div>
 
 </div>

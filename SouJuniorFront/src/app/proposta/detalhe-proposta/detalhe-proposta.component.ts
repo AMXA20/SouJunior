@@ -1,3 +1,6 @@
+import { SecurityService } from './../../security/security.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { postagemDTO, postagemCreationDTO } from './../../model/postagem.model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { propostaCreationDTO, propostaDTO } from 'src/app/model/proposta.model';
@@ -12,31 +15,55 @@ import { PropostaService } from '../proposta.service';
 })
 export class DetalhePropostaComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute,
+  constructor(private formBuilder: FormBuilder,
     private propostaService: PropostaService,
+    private securityService: SecurityService,
     private router: Router, ) { }
+
+  form: FormGroup;
 
   @Input()
   proposta: propostaDTO;
 
   dataCriacao: Date;
   propostaCreationDTO: propostaCreationDTO;
+  postagemCreationDTO: postagemCreationDTO;
+  usuarioNome: string;
+
 
   @Output()
   onSaveChanges: EventEmitter<propostaCreationDTO> = new EventEmitter<propostaCreationDTO>();
 
+  @Output()
+  onSaveChanges2: EventEmitter<postagemCreationDTO> = new EventEmitter<postagemCreationDTO>();
+
 
   ngOnInit(): void {
-     this.propostaCreationDTO ={
-      titulo: this.proposta.titulo,
-      descricao : this.proposta.descricao,
-      dataCriacao: this.proposta.dataCriacao,
-      isAceita: this.proposta.isAceita,
-      empreendedorId: this.proposta.empreendedor.id,
-      empresaJrId: this.proposta.empresaJr.id,
-     }
+
+    this.form = this.formBuilder.group({
+      propostaId: this.proposta.id,
+      nomeUsuario: this.securityService.getFieldFromJWT('given_name'),
+      mensagem: '',
+    });
+
+    this.usuarioNome = this.securityService.getFieldFromJWT('given_name');
+
+    this.propostaCreationDTO ={
+    titulo: this.proposta.titulo,
+    descricao : this.proposta.descricao,
+    dataCriacao: this.proposta.dataCriacao,
+    isAceita: this.proposta.isAceita,
+    empreendedorId: this.proposta.empreendedor.id,
+    empresaJrId: this.proposta.empresaJr.id,
+    estudanteId : this.proposta.estudante.id,
+    perfilLinkedin: this.proposta.perfilLinkedin
+    }
+     console.log(this.proposta);
   }
 
+  postar(){
+    this.onSaveChanges2.emit(this.form.value);
+  }
 
   aprovar(){
     Swal.fire({

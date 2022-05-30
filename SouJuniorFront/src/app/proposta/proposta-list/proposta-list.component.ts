@@ -11,6 +11,8 @@ export class PropostaListComponent implements OnInit {
   @Input()
   propostas: propostaFilterDTO[];
 
+
+
   columnsToDisplay = ['imagemPerfil', 'nomeFantasia','titulo','dataCriacao', 'isAceita','actions'];
   totalAmountOfRecords;
   currentPage = 1;
@@ -19,6 +21,5 @@ export class PropostaListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.propostas)
   }
 }

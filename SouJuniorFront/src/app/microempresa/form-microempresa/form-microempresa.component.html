@@ -81,7 +81,7 @@
 
 
         <div class="col">
-             <app-autocomplete-ramo-atuacao></app-autocomplete-ramo-atuacao>
+             <app-autocomplete-ramo-atuacao [ramoSelecionado]="usuario?.empreendedor.ramoAtuacao"></app-autocomplete-ramo-atuacao>
         </div>
       </div>
 
@@ -153,10 +153,10 @@
           <button matStepperPrevious mdbBtn color="light" block="true" class="my-4" type="button">Voltar</button>
         </div>
         <div class="col" *ngIf="!usuario">
-          <button mdbBtn color="success" block="true" class="my-4" type="submit">Cadastrar</button>
+          <button mdbBtn color="success" block="true" class="my-4" type="submit" [disabled]="form.invalid">Cadastrar</button>
         </div>
         <div class="col" *ngIf="usuario">
-          <button mdbBtn color="success" block="true" class="my-4" type="submit">Salvar</button>
+          <button mdbBtn color="success" block="true" class="my-4" type="submit" [disabled]="form.invalid">Salvar</button>
         </div>
       </div>
     </mat-step>

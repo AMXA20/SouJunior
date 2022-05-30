@@ -15,7 +15,7 @@ export class FormMicroempresaComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   form: FormGroup;
-  mascaraTelefone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/,/\d/,'-', /\d/, /\d/, /\d/, /\d/];
+  mascaraTelefone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/,/\d/,/\d/,'-', /\d/, /\d/, /\d/, /\d/];
   mascaraCnpj = [/[0-9]/, /\d/, '.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/,];
   mascaraCep = [/[0-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
 
@@ -34,8 +34,12 @@ export class FormMicroempresaComponent implements OnInit {
       nome: ['', {
         validators: [Validators.required, Validators.minLength(3)]
       }],
-      email: '',
-      senha: '',
+      email: ['', {
+        validators: [Validators.required, Validators.minLength(3)]
+      }],
+      senha: ['', {
+        validators: [Validators.required, Validators.minLength(3)]
+      }],
       telefone: '',
       imagemPerfil: '',
       empreendedor: new FormGroup( {
@@ -61,7 +65,11 @@ export class FormMicroempresaComponent implements OnInit {
     });
 
     if (this.usuario !== undefined){
+      this.usuario.empreendedor.dataCriacao = this.usuario.empreendedor.dataCriacao.substring(0,10);
       this.form.patchValue(this.usuario);
+      console.log(this.usuario);
+    }
+    else{
       console.log(this.usuario);
     }
 

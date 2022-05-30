@@ -33,7 +33,8 @@ export class FormPropostaComponent implements OnInit {
       descricao: '',
       dataCriacao: new Date,
       empresaJrId: '',
-      empreendedorId: ''
+      empreendedorId: '',
+      estudanteId: '',
     });
 
     if (this.proposta !== undefined){
@@ -45,8 +46,14 @@ export class FormPropostaComponent implements OnInit {
 
   saveChanges(){
     this.form.get('empresaJrId').setValue(this.empresajr.id);
-    this.form.get('empreendedorId').setValue(this.securityService.user.empreendedor.id);
-    /* this.form.get('empreendedorId').setValue("A57C744C-3EFF-4BA6-A3A4-F61879EC994C"); */
+    if(this.securityService.user.empreendedor){
+      this.form.get('empreendedorId').setValue(this.securityService.user.empreendedor.id);
+      this.form.get('estudanteId').setValue("00000000-0000-0000-0000-000000000000");
+    }
+    else{
+      this.form.get('estudanteId').setValue(this.securityService.user.estudante.id);
+      this.form.get('empreendedorId').setValue("00000000-0000-0000-0000-000000000000");
+    }
     this.onSaveChanges.emit(this.form.value);
   }
 

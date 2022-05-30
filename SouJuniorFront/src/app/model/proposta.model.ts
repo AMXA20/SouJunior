@@ -1,13 +1,17 @@
-import { empreendedorDTO, empreendedorProposta } from "./empreendedor.model";
-import { empresajrDTO, empresajrProposta } from "./empresa-jr.model";
+import {  empreendedorProposta } from "./empreendedor.model";
+import {  empresajrProposta } from "./empresa-jr.model";
+import { estudanteProposta } from "./estudante.model";
+import { postagemDTO } from "./postagem.model";
 
 export interface propostaCreationDTO {
-  titulo: string;
+  titulo: string,
   descricao : string,
   dataCriacao : string,
   isAceita: boolean,
   empresaJrId : string,
   empreendedorId : string,
+  estudanteId: string,
+  perfilLinkedin: string,
 }
 
 export interface propostaDTO {
@@ -18,6 +22,9 @@ export interface propostaDTO {
   isAceita: boolean,
   empresaJr : empresajrProposta,
   empreendedor : empreendedorProposta,
+  estudante : estudanteProposta,
+  perfilLinkedin : string,
+  postagens: postagemDTO []
 }
 
 export interface propostaFilterDTO {

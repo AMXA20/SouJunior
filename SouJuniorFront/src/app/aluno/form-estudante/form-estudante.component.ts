@@ -11,7 +11,10 @@ export class FormAlunoComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { }
 
-  mascaraTelefone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/,/\d/,'-', /\d/, /\d/, /\d/, /\d/];
+  mascaraTelefone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/,/\d/,/\d/,'-', /\d/, /\d/, /\d/, /\d/];
+  mascaraCep = [/[0-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+  mascaraCpf = [/[0-9]/, /\d/,  /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'-', /\d/, /\d/];
+
   form: FormGroup;
   periodo: { key: number; value: string;}[]
   periodos:[
@@ -32,8 +35,12 @@ export class FormAlunoComponent implements OnInit {
       nome: ['', {
         validators: [Validators.required, Validators.minLength(3)]
       }],
-      email: '',
-      senha: '',
+      email: ['', {
+        validators: [Validators.required, Validators.minLength(3)]
+      }],
+      senha: ['', {
+        validators: [Validators.required, Validators.minLength(3)]
+      }],
       telefone: '',
       imagemPerfil: '',
       estudante: new FormGroup( {

@@ -16,7 +16,7 @@ export class FormEmpresaJrComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   form: FormGroup;
-  mascaraTelefone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/,'-', /\d/, /\d/, /\d/, /\d/];
+  mascaraTelefone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/,/\d/,/\d/,'-', /\d/, /\d/, /\d/, /\d/];
   mascaraCep = [/[0-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   mascaraCnpj = [/[0-9]/, /\d/, '.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/,];
 
@@ -35,8 +35,12 @@ export class FormEmpresaJrComponent implements OnInit {
       nome: ['', {
         validators: [Validators.required, Validators.minLength(3)]
       }],
-      email: '',
-      senha: '',
+      email: ['', {
+        validators: [Validators.required, Validators.minLength(3)]
+      }],
+      senha: ['', {
+        validators: [Validators.required, Validators.minLength(3)]
+      }],
       telefone: '',
       imagemPerfil: '',
       empresaJr: new FormGroup( {
@@ -62,9 +66,12 @@ export class FormEmpresaJrComponent implements OnInit {
     });
 
     if (this.usuario !== undefined){
+      this.usuario.empresaJr.dataCriacao = this.usuario.empresaJr.dataCriacao.substring(0,10);
       this.form.patchValue(this.usuario);
     }
-
+    else{
+      console.log(this.usuario);
+    }
 
   }
 

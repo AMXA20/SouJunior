@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import {Observable} from 'rxjs';
@@ -31,12 +31,11 @@ export class AutocompleteRamoAtuacaoComponent implements OnInit {
   @Input()
   ramoSelecionado: ramoAtuacaoDTO;
 
-
-
   constructor(private ramoAtuacaoService: RamoAtuacaoService) { }
 
   ngOnInit() {
     this.loadRamos();
+    console.log(this.ramoSelecionado)
   }
 
   findOption(val: string) {

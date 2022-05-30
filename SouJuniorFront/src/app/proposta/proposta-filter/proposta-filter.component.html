@@ -1,4 +1,4 @@
-<div class = 'principal'>
+<div class = 'principal example z-depth-3'>
   <div id="header">
     <p class="h2 mb-4" id="title">Lista de Propostas</p>
   </div>
@@ -12,7 +12,9 @@
     </mat-select>
   </form>
 
-  <app-proposta-list [propostas]="propostas.dados"></app-proposta-list>
+  <div *ngIf="propostas != null">
+    <app-proposta-list [propostas]="propostas.dados"></app-proposta-list>
+  </div>
 
   <mat-paginator
       [length]="totalAmountOfRecords"

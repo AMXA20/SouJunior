@@ -1,39 +1,81 @@
-<app-generic-list [list]="empresasJr">
-    <ng-container content>
-        <table mat-table [dataSource]="empresasJr" class="mat-elevation-z8 table-index">
-            <ng-container matColumnDef="imagemPerfil">
-              <th mat-header-cell *matHeaderCellDef>Logo da Empresa</th>
-              <td mat-cell *matCellDef="let element"><img src="{{element.imagemPerfil}}" alt="logo" class="img-fluid rounded-circle z-depth-0"></td>
-            </ng-container>
+<app-authorize-view [role] = "'empreendedor'">
+  <ng-container authorized>
+    <app-generic-list [list]="empresasJr">
+        <ng-container content>
+            <table mat-table [dataSource]="empresasJr" class="mat-elevation-z8 table-index">
+                <ng-container matColumnDef="imagemPerfil">
+                  <th mat-header-cell *matHeaderCellDef class="center">Logo da Empresa</th>
+                  <td mat-cell *matCellDef="let element" class="center"><img src="{{element.imagemPerfil}}" alt="logo" class="img-fluid rounded-circle z-depth-0"></td>
+                </ng-container>
 
-            <ng-container matColumnDef="nomeFantasia">
-              <th mat-header-cell *matHeaderCellDef>Nome da Empresa</th>
-              <td mat-cell *matCellDef="let element">{{element.nomeFantasia}}</td>
-            </ng-container>
+                <ng-container matColumnDef="nomeFantasia">
+                  <th mat-header-cell *matHeaderCellDef class="center"> Nome da Empresa</th>
+                  <td mat-cell *matCellDef="let element" class="center">{{element.nomeFantasia}}</td>
+                </ng-container>
 
-            <ng-container matColumnDef="ramoAtuacao">
-                <th mat-header-cell *matHeaderCellDef>Ramo de Atuação</th>
-                <td mat-cell *matCellDef="let element">{{element.ramoAtuacao}}</td>
-            </ng-container>
+                <ng-container matColumnDef="ramoAtuacao">
+                    <th mat-header-cell *matHeaderCellDef class="center">Ramo de Atuação</th>
+                    <td mat-cell *matCellDef="let element" class="center">{{element.ramoAtuacao}}</td>
+                </ng-container>
 
-            <ng-container matColumnDef="actions">
-                <th mat-header-cell *matHeaderCellDef>Actions</th>
-                <td mat-cell *matCellDef="let element">
-                    <a
-                        routerLink="/mpe/detalheProposta/{{element.id}}"
-                        mat-flat-button color="primary"
-                    >
-                    Exibir Detalhes
-                    </a>
-                </td>
-            </ng-container>
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef class="center">Actions</th>
+                    <td mat-cell *matCellDef="let element" class="center">
+                        <a
+                            routerLink="/mpe/detalheProposta/{{element.id}}"
+                            mat-flat-button color="primary"
+                        >
+                        Exibir Detalhe
+                        </a>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
 
-            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-            <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+            </table>
+        </ng-container>
+    </app-generic-list>
+  </ng-container>
+</app-authorize-view>
 
-        </table>
+<app-authorize-view [role] = "'estudante'">
+  <ng-container authorized>
+    <app-generic-list [list]="empresasJr">
+        <ng-container content>
+            <table mat-table [dataSource]="empresasJr" class="mat-elevation-z8 table-index">
+                <ng-container matColumnDef="imagemPerfil">
+                  <th mat-header-cell *matHeaderCellDef class="center">Logo da Empresa</th>
+                  <td mat-cell *matCellDef="let element" class="center"><img src="{{element.imagemPerfil}}" alt="logo" class="img-fluid rounded-circle z-depth-0"></td>
+                </ng-container>
 
+                <ng-container matColumnDef="nomeFantasia">
+                  <th mat-header-cell *matHeaderCellDef class="center"> Nome da Empresa</th>
+                  <td mat-cell *matCellDef="let element" class="center">{{element.nomeFantasia}}</td>
+                </ng-container>
 
-    </ng-container>
-</app-generic-list>
+                <ng-container matColumnDef="ramoAtuacao">
+                    <th mat-header-cell *matHeaderCellDef class="center">Ramo de Atuação</th>
+                    <td mat-cell *matCellDef="let element" class="center">{{element.ramoAtuacao}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef class="center">Actions</th>
+                    <td mat-cell *matCellDef="let element" class="center">
+                        <a
+                            routerLink="/estudante/detalheCandidato/{{element.id}}"
+                            mat-flat-button color="primary"
+                        >
+                        Exibir Detalhe
+                        </a>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+
+            </table>
+        </ng-container>
+    </app-generic-list>
+  </ng-container>
+</app-authorize-view>
+
 

@@ -1,6 +1,8 @@
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { CarouselModule } from 'ngx-owl-carousel-o'
@@ -45,7 +47,16 @@ import { PropostaListComponent } from './proposta/proposta-list/proposta-list.co
 import { PropostaFilterComponent } from './proposta/proposta-filter/proposta-filter.component';
 import { FormCreateEmpresajrComponent } from './empresajr/form-create-empresajr/form-create-empresajr.component';
 import { FormCreateMicroempresaComponent } from './microempresa/form-create-microempresa/form-create-microempresa.component';
+import { DisplayErrorsComponent } from './utilities/display-errors/display-errors.component';
+import { FormCreateEstudanteComponent } from './aluno/form-create-estudante/form-create-estudante.component';
+import { CreateCandidatoComponent } from './candidato/create-candidato/create-candidato.component';
+import { DetalheCandidatoComponent } from './candidato/detalhe-candidato/detalhe-candidato.component';
+import { EditCandidatoComponent } from './candidato/edit-candidato/edit-candidato.component';
+import { FormCandidatoComponent } from './candidato/form-candidato/form-candidato.component';
+import { CandidatoFilterComponent } from './candidato/candidato-filter/candidato-filter.component';
+import { CandidatoListComponent } from './candidato/candidato-list/candidato-list.component';
 
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -78,6 +89,14 @@ import { FormCreateMicroempresaComponent } from './microempresa/form-create-micr
     PropostaFilterComponent,
     FormCreateEmpresajrComponent,
     FormCreateMicroempresaComponent,
+    DisplayErrorsComponent,
+    FormCreateEstudanteComponent,
+    CreateCandidatoComponent,
+    DetalheCandidatoComponent,
+    EditCandidatoComponent,
+    FormCandidatoComponent,
+    CandidatoFilterComponent,
+    CandidatoListComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,13 +110,19 @@ import { FormCreateMicroempresaComponent } from './microempresa/form-create-micr
     CarouselModule,
     MatStepperModule,
     TextMaskModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
   ],
-  providers: [{
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    {
+      provide: DEFAULT_CURRENCY_CODE,
+      useValue: 'BRL',
+    },
+    {
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptorService,
     multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

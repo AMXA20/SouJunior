@@ -1,5 +1,6 @@
-<div id="header">
-  <p class="h2 mb-4" id="title">Detalhes da Empresa</p>
+<div class="example z-depth-5">
+  <div id="header">
+    <p class="h2 mb-4" id="title">Detalhes da Empresa</p>
+  </div>
+  <app-form-proposta *ngIf="model" [empresajr]="model"  (onSaveChanges)="saveChanges($event)"></app-form-proposta>
 </div>
-<app-form-proposta *ngIf="model" [empresajr]="model"  (onSaveChanges)="saveChanges($event)"></app-form-proposta>
-

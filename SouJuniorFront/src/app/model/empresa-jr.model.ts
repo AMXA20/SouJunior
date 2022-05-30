@@ -18,7 +18,7 @@ export interface empresajrDTO {
   dataCriacao: string;
   razaoSocial: string;
   nomeFantasia: string;
-  ramoAtuacao: String;
+  ramoAtuacao: ramoAtuacaoDTO;
   endereco: enderecoDTO;
 }
 

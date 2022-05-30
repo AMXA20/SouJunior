@@ -15,8 +15,6 @@ import { PropostaService } from '../proposta.service';
 })
 export class PropostaFilterComponent implements OnInit {
 
-
-
   constructor(private formBuilder: FormBuilder, private propostaService: PropostaService, private location: Location,
     private activatedRoute: ActivatedRoute, private securityService: SecurityService ) { }
 
@@ -29,12 +27,9 @@ export class PropostaFilterComponent implements OnInit {
     initialFormValues: any;
     totalAmountOfRecords;
 
-
-
     columnsToDisplay = ['imagemPerfil','nomeFantasia','titulo','dataCriacao','isAceita', 'actions'];
 
     ngOnInit(): void {
-
       this.form = this.formBuilder.group({
         isAceita: '',
       });
@@ -47,6 +42,7 @@ export class PropostaFilterComponent implements OnInit {
 
       this.initialFormValues = this.form.value;
       this.readParametersFromURL();
+
     }
 
    /*  loadProposta(){
@@ -63,19 +59,30 @@ export class PropostaFilterComponent implements OnInit {
     }
    */
     filterPropostas(values: any){
+
       this.securityService.chargeUser();
-      if(this.securityService.user.empresaJr == undefined){
+      if(this.securityService.user.empresaJr == undefined && this.securityService.user.estudante == undefined){
         values.EmpreendedorId = this.securityService.user.empreendedor.id;
-      }else{
+      }else if (this.securityService.user.estudante == undefined && this.securityService.user.empreendedor == undefined){
         values.EmpresaJrId = this.securityService.user.empresaJr.id;
+      }
+      else{
+        values.estudanteId= this.securityService.user.estudante.id;
       }
       values.PageIndex = this.currentPage;
       values.PageSize = this.recordsPerPage;
       this.propostaService.filter(values).subscribe((response: HttpResponse<propostaFilter>)=>{
         this.propostas = response.body;
         this.totalAmountOfRecords = response.body.totalItems;
-        console.log(this.propostas);
-      })
+        let aux: any []= [];
+        this.propostas.dados.forEach(function (value) {
+          if(value.empreendedorId != '00000000-0000-0000-0000-000000000000'){
+            aux.push(value);
+          }
+        });
+        this.propostas.dados = aux;
+      });
+
     }
 
     private readParametersFromURL(){

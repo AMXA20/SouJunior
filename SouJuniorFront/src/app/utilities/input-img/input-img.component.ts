@@ -23,8 +23,6 @@ export class InputImgComponent implements OnInit {
   onImageSelected = new EventEmitter<string>();
 
   ngOnInit(): void {
-    this.urlCurrentImage = 'data:image/png;base64,'+this.urlCurrentImage;
-    console.log(this.urlCurrentImage);
   }
 
   fileChangeEvent(fileInput: any) {

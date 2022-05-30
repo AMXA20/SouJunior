@@ -3,15 +3,26 @@
   <div id="formheader">
     <p class="h4 mb-4">Entre na SouJunior!</p>
   </div>
-  <form (submit)="onSubmit.emit(form.value)" [formGroup]="form" class="text-center border border-light p-5">
+  <form (submit)="onSubmit.emit(form.value)" [formGroup]="form" class="text-center border border-light p-5 example z-depth-5">
 
     <!-- Email -->
-    <label for="email"> Nome do Proprietáriogsdyfgasohdfgsaidfgsapjdfsadopfjasdlpkfjsadjfasdf</label>
-    <input type="email" formControlName="email" id="email" class="form-control mb-4" placeholder="Digite o E-mail">
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput />
+      <mat-error>{{getEmailErrorMessage()}}</mat-error>
+    </mat-form-field>
 
+    <br>
     <!-- Password -->
-    <label for="senha"> Nome do Proprietário</label>
-    <input type="password" formControlName="senha" id="senha" class="form-control mb-4" placeholder="Digite a Senha">
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Senha</mat-label>
+      <input type="password" formControlName="senha" matInput />
+      <mat-error>Preencha a senha</mat-error>
+    </mat-form-field>
+
+    <ul *ngIf="errors.length > 0">
+      <li *ngFor="let error of errors">{{error}}</li>
+    </ul>
 
     <div class="d-flex justify-content-around">
       <div>
@@ -20,8 +31,11 @@
       </div>
     </div>
 
+
+
     <!-- Sign in button -->
-    <button mdbBtn color="info" block="true" class="my-4" type="submit">Entrar</button>
+
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" [disabled]="form.invalid">Entrar</button>
 
     <!-- Register -->
     <p>Não está cadastrado?

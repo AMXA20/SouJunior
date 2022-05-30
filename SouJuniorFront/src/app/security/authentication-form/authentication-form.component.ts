@@ -14,6 +14,9 @@ export class AuthenticationFormComponent implements OnInit {
   form: FormGroup;
 
   @Input()
+  errors: string[] = [];
+
+  @Input()
   action: string = 'Register';
 
   @Output()
@@ -33,11 +36,11 @@ export class AuthenticationFormComponent implements OnInit {
   getEmailErrorMessage(){
     var field = this.form.get('email');
     if (field.hasError('required')){
-      return "The email field is required";
+      return "Preencha o e-mail";
     }
 
     if (field.hasError('email')){
-      return "The email is invalid";
+      return "email inválido";
     }
 
     return '';

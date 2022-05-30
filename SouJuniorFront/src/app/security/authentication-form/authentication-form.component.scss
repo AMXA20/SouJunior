@@ -20,6 +20,10 @@
   }
 }
 
+.input{
+  width: 100%;
+}
+
 form{
   width: 500px;
   background-color: white;
@@ -31,5 +35,15 @@ label{
   top: -11px;
   left:20px;
   background-color:white;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 10%;
+}
+
+li{
+  color: red;
+  padding-right: 12%;
 }
 

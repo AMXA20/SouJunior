@@ -1,8 +1,10 @@
-<div id="header">
-  <p class="h2 mb-4" id="title">Proposta</p>
-</div>
 
-<app-detalhe-proposta *ngIf="proposta" [proposta]="proposta"
-(onSaveChanges)="saveChanges($event)"></app-detalhe-proposta>
+  <div id="header">
+    <p class="h2 mb-4" id="title">Proposta</p>
+  </div>
 
-<mat-spinner *ngIf="!proposta"></mat-spinner>
+  <app-detalhe-proposta *ngIf="proposta" [proposta]="proposta"
+  (onSaveChanges)="saveChanges($event)" (onSaveChanges2)="saveChanges2($event)"></app-detalhe-proposta>
+
+  <mat-spinner *ngIf="!proposta"></mat-spinner>
+

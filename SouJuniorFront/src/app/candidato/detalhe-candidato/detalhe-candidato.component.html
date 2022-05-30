@@ -1,0 +1,148 @@
+<div class="principal  example z-depth-5">
+  <div id="hero">
+    <app-authorize-view [role] = "'estudante'">
+
+      <ng-container authorized>
+
+        <div *ngIf="proposta.isAceita === null" >
+          <p id="pendente">Pendente</p>
+        </div>
+        <div *ngIf="proposta.isAceita === true">
+          <p id="aprovado">Selecionado!</p>
+        </div>
+        <div *ngIf="proposta.isAceita === false">
+          <p id="recusado">Não Selecionado</p>
+        </div>
+
+        <section class="content">
+          <img [src]="proposta.empresaJr.imagemPerfil" alt="" class="img-fluid z-depth-2 rounded">
+          <div class="container">
+            <article>
+              <h2>{{proposta.empresaJr.nomeFantasia}}</h2>
+              <p class="descricao">{{proposta.empresaJr.descricao}}</p>
+                <h3><mdb-icon fas icon="map-marked"></mdb-icon> {{proposta.empresaJr.endereco.logradouro}},
+                  {{proposta.empresaJr.endereco.numero}},
+                  {{proposta.empresaJr.endereco.complemento}},
+                  {{proposta.empresaJr.endereco.bairro}},
+                  {{proposta.empresaJr.endereco.cidade}},
+                  {{proposta.empresaJr.endereco.estado}},
+                  {{proposta.empresaJr.endereco.cep}}</h3>
+                  <div *ngIf="proposta.isAceita === true" >
+                    <h3><mdb-icon fas icon="address-book"></mdb-icon>
+                      {{proposta.empresaJr.telefone}}, {{proposta.empresaJr.email}}</h3>
+                  </div>
+            </article>
+            <article>
+              <h2><strong>{{proposta.titulo}}</strong></h2>
+              <p class="descricao"><strong>Carta de Apresentação: </strong>{{proposta.descricao}}</p>
+              <p><strong>Data de envio: </strong>{{proposta.dataCriacao | date: 'short'}}</p>
+              <!-- <p>{{proposta.dataCriacao | date: "short"}}</p> -->
+            </article>
+
+          </div>
+        </section>
+        <div class="form-row mb-4">
+          <div class="col">
+          </div>
+          <div class="col" *ngIf="proposta.isAceita==null">
+            <button mdbBtn color="danger" block="true" class="my-4"
+            [swal]="{
+              title:'Excluir',
+              text: 'Tem Certeza que deseja Exluir a Proposta?',
+              showCancelButton:true
+            }" (confirm)="excluir()">Excluir</button>
+          </div>
+          <div class="col">
+            <button mdbBtn color="primary" block="true" class="my-4" routerLink="/listaCandidato">Voltar</button>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+
+      </ng-container>
+    </app-authorize-view>
+  </div>
+
+
+    <app-authorize-view [role] = "'empresajr'">
+      <ng-container authorized>
+        <div *ngIf="proposta.isAceita === null" >
+          <p id="pendente">Pendente</p>
+        </div>
+        <div *ngIf="proposta.isAceita === true">
+          <p id="aprovado">Selecionado!</p>
+        </div>
+        <div *ngIf="proposta.isAceita === false">
+          <p id="recusado">Não Selecionado</p>
+        </div>
+
+        <section class="content">
+          <img [src]="proposta.estudante.imagemPerfil" alt="" class="img-fluid z-depth-3 rounded">
+          <div class="container">
+            <article>
+                <h2><strong>{{proposta.estudante.nome}}</strong></h2>
+                <p><strong>{{proposta.estudante.curso}}</strong></p>
+                <p><strong>{{proposta.estudante.instituicao}}</strong></p>
+                  <h3><mdb-icon fas icon="map-marked"></mdb-icon> {{proposta.estudante.endereco.logradouro}},
+                    {{proposta.estudante.endereco.numero}},
+                    {{proposta.estudante.endereco.complemento}},
+                    {{proposta.estudante.endereco.bairro}},
+                    {{proposta.estudante.endereco.cidade}},
+                    {{proposta.estudante.endereco.estado}},
+                    {{proposta.estudante.endereco.cep}}</h3>
+
+                    <div *ngIf="proposta.isAceita === true" >
+                      <h3><mdb-icon fas icon="address-book"></mdb-icon>
+                        {{proposta.estudante.telefone}}, {{proposta.estudante.email}}</h3>
+                    </div>
+                    <h3><mdb-icon fab icon="linkedin"></mdb-icon>
+                      <a href={{proposta.perfilLinkedin}} target="_blank">  {{proposta.perfilLinkedin}}</a>
+                    </h3>
+            </article>
+            <article>
+              <h2><strong>{{proposta.titulo}}</strong></h2>
+              <p class="descricao"><strong>Carta de Apresentação: </strong>{{proposta.descricao}}</p>
+              <p><strong>Data de Envio: </strong> {{proposta.dataCriacao | date: 'short'}}</p>
+            </article>
+
+          </div>
+        </section>
+
+        <div *ngIf="proposta.isAceita == null" class="form-row mb-4">
+          <div class="col">
+            <button mdbBtn color="primary" block="true" class="my-4" routerLink="/listaCandidato">Voltar</button>
+          </div>
+          <div class="col">
+            <button mdbBtn color="danger" block="true" class="my-4"
+            [swal]="{
+              icon: 'info',
+              title:'Recusar',
+              text: 'Tem Certeza que deseja Recusar a Proposta?',
+              showCancelButton:true
+            }"
+            (confirm)="reprovar()" type="submit">Recusar</button>
+          </div>
+          <div class="col">
+            <button mdbBtn color="success" block="true" class="my-4"
+            [swal]="{
+              icon: 'info',
+              title:'Aceitar',
+              text: 'Tem Certeza que deseja Aceitar a Proposta?',
+              showCancelButton:true
+            }"
+            (confirm)="aprovar()" type="submit">Aceitar Proposta</button>
+          </div>
+        </div>
+        <div *ngIf="proposta.isAceita != null" class="form-row mb-4">
+          <div class="col">
+          </div>
+          <div class="col">
+            <button mdbBtn color="primary" block="true" class="my-4" routerLink="/listaCandidato">Voltar</button>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+      </ng-container>
+    </app-authorize-view>
+
+</div>

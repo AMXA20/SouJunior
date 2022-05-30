@@ -21,8 +21,9 @@ export class EditMicroempresaComponent implements OnInit {
 
   ngOnInit(): void {
     this.securityService.chargeUser();
-    console.log(this.model);
+
     this.model = this.securityService.user;
+    console.log(this.model);
     /* this.model.imagemPerfil = this.domSanitizer.sanitize(SecurityContext.RESOURCE_URL,this.domSanitizer.bypassSecurityTrustUrl(this.model.imagemPerfil));
     console.log(this.model.imagemPerfil); */
   }

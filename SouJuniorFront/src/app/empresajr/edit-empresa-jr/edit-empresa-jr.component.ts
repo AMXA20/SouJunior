@@ -20,7 +20,6 @@ export class EditEmpresaJrComponent implements OnInit {
 
   ngOnInit(): void {
     this.securityService.chargeUser();
-
     this.model = this.securityService.user;
   }
 

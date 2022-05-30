@@ -179,6 +179,29 @@ namespace SouJunior.Infra.Migrations
                     b.ToTable("Estudante");
                 });
 
+            modelBuilder.Entity("SouJunior.Domain.Entities.PostagemEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataHora")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Mensagem")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeUsuario")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PropostaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Postagem");
+                });
+
             modelBuilder.Entity("SouJunior.Domain.Entities.PropostaEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -195,6 +218,9 @@ namespace SouJunior.Infra.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("EmpresaJrId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("EstudanteId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool?>("IsAceita")

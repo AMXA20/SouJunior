@@ -1,0 +1,8 @@
+<div id="header">
+  <p class="h2 mb-4" id="title">Candidatura</p>
+</div>
+
+<app-detalhe-candidato *ngIf="proposta" [proposta]="proposta"
+(onSaveChanges)="saveChanges($event)"></app-detalhe-candidato>
+
+<mat-spinner *ngIf="!proposta"></mat-spinner>
